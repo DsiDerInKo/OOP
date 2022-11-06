@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
- * @param <E>
+ * Vector.
+ * Vector is dynamic array with type E.
+ *
+ * @param <E> type of Vector.
  */
 public class Vector<E> {
 
@@ -12,12 +15,14 @@ public class Vector<E> {
     private int curSize;
 
     /**
-     *
+     * DEFAULT_SIZE is just basic start size of Vector if user didn't give start size of Vector.
      */
     public final static int DEFAULT_SIZE = 2;
 
     /**
-     * @param startSize
+     * Init a Vector with startSize size.
+     *
+     * @param startSize start size of Vector (user can give it).
      */
     @SuppressWarnings({"unchecked"})
     public Vector(int startSize) {
@@ -30,7 +35,7 @@ public class Vector<E> {
     }
 
     /**
-     *
+     * If user ignore startSize, init Vector with DEFAULT_SIZE size.
      */
     public Vector() {
 
@@ -39,21 +44,25 @@ public class Vector<E> {
     }
 
     /**
-     * @param size
+     * Resize of Vector to new size.
+     *
+     * @param size new size.
      */
     private void resize(int size) {
         array = Arrays.copyOf(array, size);
     }
 
     /**
-     *
+     * Resize to increased into 2 times of currentSize size.
      */
     private void grow() {
         resize(array.length * 2);
     }
 
     /**
-     * @param elem
+     * Adds an elem to Vector.
+     *
+     * @param elem element which will be added.
      */
     public void add(E elem) {
         if (curSize == array.length) {
@@ -63,7 +72,9 @@ public class Vector<E> {
     }
 
     /**
-     * @return
+     * Pops last element in Vector.
+     *
+     * @return popped element.
      */
     public E popLast() {
         if (curSize == 0) {
@@ -73,8 +84,10 @@ public class Vector<E> {
     }
 
     /**
-     * @param index
-     * @return
+     * Gets an element on index place.
+     *
+     * @param index place in Vector.
+     * @return element on index place.
      */
     public E get(int index) {
         if (index < 0 || index >= array.length) {
@@ -84,8 +97,10 @@ public class Vector<E> {
     }
 
     /**
-     * @param value
-     * @param index
+     * Sets an element to index place.
+     *
+     * @param value element to set.
+     * @param index place to set.
      */
     public void set(E value, int index) {
         if (index < 0 || index >= array.length) {
@@ -94,10 +109,20 @@ public class Vector<E> {
         array[index] = value;
     }
 
+    /**
+     * Gets current size of Vector.
+     *
+     * @return current size of Vector.
+     */
     public int getCurSize() {
         return curSize;
     }
 
+    /**
+     * Adds all elements from Collection to Vector.
+     *
+     * @param elements elements of Collection.
+     */
     public void addAll(Collection<? extends E> elements) {
 
         for (E element : elements) {

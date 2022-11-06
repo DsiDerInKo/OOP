@@ -79,8 +79,9 @@ public class Vector<E> {
     public E popLast() {
         if (curSize == 0) {
             throw new IllegalArgumentException("Array is empty, there is nothing to remove");
+
         }
-        return array[curSize--];
+        return array[--curSize];
     }
 
     /**
@@ -131,6 +132,13 @@ public class Vector<E> {
 
         //elements.stream().peek(this::add);
 
+    }
+
+    /**
+     * Clears Vector.
+     */
+    public void clear() {
+        curSize = 0;
     }
 
 }

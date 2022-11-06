@@ -42,7 +42,7 @@ public class Stack<E> {
      * @return peeked element.
      */
     public E peek() {
-        return vector.get(vector.getCurSize());
+        return vector.get(vector.getCurSize() - 1);
     }
 
 }

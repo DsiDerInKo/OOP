@@ -17,7 +17,7 @@ public class Vector<E> {
     /**
      * DEFAULT_SIZE is just basic start size of Vector if user didn't give start size of Vector.
      */
-    public final static int DEFAULT_SIZE = 2;
+    public static final int DEFAULT_SIZE = 2;
 
     /**
      * Init a Vector with startSize size.

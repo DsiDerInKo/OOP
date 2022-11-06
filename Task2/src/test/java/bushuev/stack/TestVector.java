@@ -1,7 +1,6 @@
 package bushuev.stack;
 
 import java.util.List;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -3,7 +3,7 @@ package bushuev.stack;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 /**
@@ -34,7 +34,7 @@ public class TestVector {
         vector.set(200, vector.getCurSize() - 1);
         Assertions.assertEquals(200, vector.get(vector.getCurSize() - 1));
         vector.clear();
-        Assertions.assertThrows(IllegalArgumentException.class, () -> vector.popLast());
+        Assertions.assertThrows(IllegalArgumentException.class, vector::popLast);
         Assertions.assertEquals(0, vector.getCurSize());
         var list = List.of(6, 1, 2, 5);
         vector.addAll(list);

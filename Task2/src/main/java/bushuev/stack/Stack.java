@@ -14,7 +14,7 @@ public class Stack<E> {
      */
     public Stack() {
 
-        vector = new Vector<E>();
+        vector = new Vector<>();
 
     }
 

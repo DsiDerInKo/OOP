@@ -135,6 +135,16 @@ public class Vector<E> {
     }
 
     /**
+     * Puts all elements from stack to collection.
+     *
+     * @param collection place, where you want to place elements.
+     */
+    public void popAll(Collection<E> collection) {
+        collection.addAll(Arrays.asList(array));
+        curSize = 0;
+    }
+
+    /**
      * Clears Vector.
      */
     public void clear() {

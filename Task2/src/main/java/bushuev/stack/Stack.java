@@ -45,4 +45,22 @@ public class Stack<E> {
         return vector.get(vector.getCurSize() - 1);
     }
 
+    /**
+     * Useful.
+     *
+     * @return returns current stack size.
+     */
+    public int curSize() {
+        return vector.getCurSize();
+    }
+
+    /**
+     * Checks "is stack empty".
+     *
+     * @return true or false.
+     */
+    public boolean isEmpty() {
+        return vector.getCurSize() == 0;
+    }
+
 }

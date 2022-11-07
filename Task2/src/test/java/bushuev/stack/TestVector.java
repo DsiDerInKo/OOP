@@ -4,12 +4,10 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-
 /**
  * Tests.
  */
 public class TestVector {
-
 
     @Test
     void test() {
@@ -43,13 +41,10 @@ public class TestVector {
             Assertions.assertEquals(integer, vector.get(i));
             i++;
         }
-
         Assertions.assertThrows(IllegalArgumentException.class, () -> vector.get(100));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Vector<>(-2));
         vector.add(4);
-
         Assertions.assertThrows(IllegalArgumentException.class, () -> vector.get(-2));
-
         Assertions.assertThrows(IllegalArgumentException.class, () -> vector.set(111, -1));
         Assertions.assertThrows(IllegalArgumentException.class, () -> vector.set(111, 100));
     }

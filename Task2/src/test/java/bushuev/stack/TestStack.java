@@ -17,6 +17,11 @@ public class TestStack {
         Assertions.assertEquals(300, stack.pop());
         Assertions.assertEquals(200, stack.pop());
         Assertions.assertEquals(100, stack.peek());
-
+        Assertions.assertFalse(stack.isEmpty());
+        stack.pop();
+        Assertions.assertTrue(stack.isEmpty());
+        stack.push(12);
+        stack.push(13);
+        Assertions.assertEquals(2, stack.curSize());
     }
 }

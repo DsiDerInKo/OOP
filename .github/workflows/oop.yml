@@ -48,6 +48,18 @@ jobs:
       - name: Generate javadoc
         run: ./gradlew ${{ github.event.pull_request.title }}:javadoc
 
+      #- name: Generate jar1
+      #  run: ./gradlew ${{ github.event.pull_request.title }}:compileJava
+
+      #- name: Generate jar2
+      #  run: ./gradlew ${{ github.event.pull_request.title }}:processResources
+
+      #- name: Generate jar3
+      #  run: ./gradlew ${{ github.event.pull_request.title }}:classes
+
+      #- name: Generate jar4
+      #  run: ./gradlew ${{ github.event.pull_request.title }}:jar
+
       - name: directory tree
         run: tree
 
@@ -60,6 +72,7 @@ jobs:
           folder: ${{ github.event.pull_request.title }}/build/docs/javadoc
           # Если джавадоки не там, то можете поменять директорию выше, опираясь на дерево выше
           target-folder: ${{ github.event.pull_request.title }}
+
 
   checkstyle:
     runs-on: ubuntu-latest

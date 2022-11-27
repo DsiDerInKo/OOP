@@ -3,6 +3,7 @@ package bushuev.stack;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -55,7 +56,7 @@ public class TestVector {
         Assertions.assertThrows(IllegalArgumentException.class, () -> vector.addAll(null));
         Assertions.assertThrows(IllegalArgumentException.class, () -> vector.popAll(null));
 
-        vector.popAll(new ArrayList<>(Arrays.stream(arr).toList()));
+        vector.popAll(new ArrayList<>(Arrays.stream(arr).collect(Collectors.toList())));
 
     }
 }

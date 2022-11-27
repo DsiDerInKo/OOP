@@ -1,6 +1,9 @@
 package bushuev.stack;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +11,8 @@ import org.junit.jupiter.api.Test;
  * Tests.
  */
 public class TestVector {
+
+    Integer[] arr = new Integer[10];
 
     @Test
     void test() {
@@ -47,5 +52,10 @@ public class TestVector {
         Assertions.assertThrows(IllegalArgumentException.class, () -> vector.get(-2));
         Assertions.assertThrows(IllegalArgumentException.class, () -> vector.set(111, -1));
         Assertions.assertThrows(IllegalArgumentException.class, () -> vector.set(111, 100));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> vector.addAll(null));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> vector.popAll(null));
+
+        vector.popAll(new ArrayList<>(Arrays.stream(arr).toList()));
+
     }
 }

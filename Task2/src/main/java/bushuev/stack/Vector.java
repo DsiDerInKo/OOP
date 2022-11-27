@@ -91,7 +91,7 @@ public class Vector<E> {
      * @return element on index place.
      */
     public E get(int index) {
-        if (index < 0 || index >= array.length) {
+        if (index < 0 || index >= curSize) {
             throw new IllegalArgumentException("Incorrect index");
         }
         return array[index];
@@ -104,7 +104,7 @@ public class Vector<E> {
      * @param index place to set.
      */
     public void set(E value, int index) {
-        if (index < 0 || index >= array.length) {
+        if (index < 0 || index >= curSize) {
             throw new IllegalArgumentException("Incorrect index");
         }
         array[index] = value;
@@ -126,6 +126,10 @@ public class Vector<E> {
      */
     public void addAll(Collection<? extends E> elements) {
 
+        if (elements == null) {
+            throw new IllegalArgumentException("No collection");
+        }
+
         for (E element : elements) {
             add(element);
         }
@@ -140,6 +144,9 @@ public class Vector<E> {
      * @param collection place, where you want to place elements.
      */
     public void popAll(Collection<E> collection) {
+        if (collection == null) {
+            throw new IllegalArgumentException("No collection");
+        }
         collection.addAll(Arrays.asList(array));
         curSize = 0;
     }
@@ -150,5 +157,6 @@ public class Vector<E> {
     public void clear() {
         curSize = 0;
     }
+
 
 }

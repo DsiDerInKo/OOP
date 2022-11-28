@@ -2,7 +2,41 @@ package bushuev.is;
 
 import java.util.*;
 
-public class MyList implements List {
+public class MyList<E> implements List<E> {
+
+    private class Node {
+        E value;
+        Node prev;
+        Node next;
+
+        public Node(E elem) {
+            value = elem;
+            prev = this;
+            next = this;
+        }
+
+        public void addAfter(Node self, E newValue) {
+
+            Node newNode = new Node(newValue);
+            newNode.prev = self;
+            newNode.next = self.next;
+            self.next.prev = newNode;
+            self.next = newNode;
+
+        }
+
+        public void addBefore(Node self, E newValue) {
+
+            Node newNode = new Node(newValue);
+            newNode.next = self;
+            newNode.prev = self.prev;
+            self.prev.next = newNode;
+            self.prev = newNode;
+
+        }
+
+    }
+
     /**
      * Returns the number of elements in this list.  If this list contains
      * more than {@code Integer.MAX_VALUE} elements, returns
@@ -130,7 +164,7 @@ public class MyList implements List {
     }
 
     /**
-     * Appends all of the elements in the specified collection to the end of
+     * Appends all the elements in the specified collection to the end of
      * this list, in the order that they are returned by the specified
      * collection's iterator (optional operation).  The behavior of this
      * operation is undefined if the specified collection is modified while
@@ -156,7 +190,7 @@ public class MyList implements List {
     }
 
     /**
-     * Inserts all of the elements in the specified collection into this
+     * Inserts all the elements in the specified collection into this
      * list at the specified position (optional operation).  Shifts the
      * element currently at that position (if any) and any subsequent
      * elements to the right (increases their indices).  The new elements
@@ -188,7 +222,7 @@ public class MyList implements List {
     }
 
     /**
-     * Removes all of the elements from this list (optional operation).
+     * Removes all the elements from this list (optional operation).
      * The list will be empty after this call returns.
      *
      * @throws UnsupportedOperationException if the {@code clear} operation
@@ -208,7 +242,7 @@ public class MyList implements List {
      *                                   ({@code index < 0 || index >= size()})
      */
     @Override
-    public Object get(int index) {
+    public E get(int index) {
         return null;
     }
 
@@ -273,7 +307,7 @@ public class MyList implements List {
      *                                       ({@code index < 0 || index >= size()})
      */
     @Override
-    public Object remove(int index) {
+    public E remove(int index) {
         return null;
     }
 

@@ -90,7 +90,7 @@ public class MyList<E> implements List<E> {
     }
 
     /**
-     * Returns an array containing all of the elements in this list in proper
+     * Returns an array containing all the elements in this list in proper
      * sequence (from first to last element).
      *
      * <p>The returned array will be "safe" in that no references to it are
@@ -101,7 +101,7 @@ public class MyList<E> implements List<E> {
      * <p>This method acts as bridge between array-based and collection-based
      * APIs.
      *
-     * @return an array containing all of the elements in this list in proper
+     * @return an array containing all the elements in this list in proper
      * sequence
      * @see Arrays#asList(Object[])
      */
@@ -393,7 +393,7 @@ public class MyList<E> implements List<E> {
      * {@code fromIndex} and {@code toIndex} are equal, the returned list is
      * empty.)  The returned list is backed by this list, so non-structural
      * changes in the returned list are reflected in this list, and vice-versa.
-     * The returned list supports all of the optional list operations supported
+     * The returned list supports all the optional list operations supported
      * by this list.<p>
      * <p>
      * This method eliminates the need for explicit range operations (of
@@ -405,7 +405,7 @@ public class MyList<E> implements List<E> {
      *      list.subList(from, to).clear();
      * }</pre>
      * Similar idioms may be constructed for {@code indexOf} and
-     * {@code lastIndexOf}, and all of the algorithms in the
+     * {@code lastIndexOf}, and all the algorithms in the
      * {@code Collections} class can be applied to a subList.<p>
      * <p>
      * The semantics of the list returned by this method become undefined if
@@ -475,11 +475,11 @@ public class MyList<E> implements List<E> {
     }
 
     /**
-     * Returns {@code true} if this list contains all of the elements of the
+     * Returns {@code true} if this list contains all the elements of the
      * specified collection.
      *
      * @param c collection to be checked for containment in this list
-     * @return {@code true} if this list contains all of the elements of the
+     * @return {@code true} if this list contains all the elements of the
      * specified collection
      * @throws ClassCastException   if the types of one or more elements
      *                              in the specified collection are incompatible with this
@@ -498,7 +498,7 @@ public class MyList<E> implements List<E> {
     }
 
     /**
-     * Returns an array containing all of the elements in this list in
+     * Returns an array containing all the elements in this list in
      * proper sequence (from first to last element); the runtime type of
      * the returned array is that of the specified array.  If the list fits
      * in the specified array, it is returned therein.  Otherwise, a new

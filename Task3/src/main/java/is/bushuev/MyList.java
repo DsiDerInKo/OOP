@@ -1,4 +1,4 @@
-package bushuev.is;
+package is.bushuev;
 
 import java.util.*;
 

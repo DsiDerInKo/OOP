@@ -101,22 +101,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Inserts the specified element at the specified position in this list
  (optional operation).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#add(java.lang.Object)">add(Object)</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
+<dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#add(E)">add(E)</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
 <dd>
 <div class="block">Appends the specified element to the end of this list (optional
  operation).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#addAll(int,java.util.Collection)">addAll(int, Collection)</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
-<dd>
-<div class="block">Inserts all the elements in the specified collection into this
- list at the specified position (optional operation).</div>
-</dd>
+<dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#addAfter(is.bushuev.MyList.Node,E)">addAfter(MyList.Node, E)</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#addAll(java.util.Collection)">addAll(Collection)</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
 <dd>
 <div class="block">Appends all the elements in the specified collection to the end of
  this list, in the order that they are returned by the specified
  collection's iterator (optional operation).</div>
 </dd>
+<dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#addBefore(is.bushuev.MyList.Node,E)">addBefore(MyList.Node, E)</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <a id="I:C">
 <!--   -->
@@ -178,16 +177,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Returns the index of the last occurrence of the specified element
  in this list, or -1 if this list does not contain the element.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#listIterator()">listIterator()</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
-<dd>
-<div class="block">Returns a list iterator over the elements in this list (in proper
- sequence).</div>
-</dd>
-<dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#listIterator(int)">listIterator(int)</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
-<dd>
-<div class="block">Returns a list iterator over the elements in this list (in proper
- sequence), starting at the specified position in the list.</div>
-</dd>
 </dl>
 <a id="I:M">
 <!--   -->
@@ -219,6 +208,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Removes from this list all of its elements that are contained in the
  specified collection (optional operation).</div>
 </dd>
+<dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#removeElem(is.bushuev.MyList.Node)">removeElem(MyList.Node)</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#retainAll(java.util.Collection)">retainAll(Collection)</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
 <dd>
 <div class="block">Retains only the elements in this list that are contained in the
@@ -239,11 +230,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Returns the number of elements in this list.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#subList(int,int)">subList(int, int)</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
-<dd>
-<div class="block">Returns a view of the portion of this list between the specified
- <code>fromIndex</code>, inclusive, and <code>toIndex</code>, exclusive.</div>
-</dd>
 </dl>
 <a id="I:T">
 <!--   -->
@@ -255,11 +241,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Returns an array containing all the elements in this list in proper
  sequence (from first to last element).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#toArray(java.lang.Object%5B%5D)">toArray(Object[])</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
+<dt><span class="memberNameLink"><a href="is/bushuev/MyList.html#toArray(T%5B%5D)">toArray(T[])</a></span> - Method in class is.bushuev.<a href="is/bushuev/MyList.html" title="class in is.bushuev">MyList</a></dt>
 <dd>
-<div class="block">Returns an array containing all the elements in this list in
- proper sequence (from first to last element); the runtime type of
- the returned array is that of the specified array.</div>
+<div class="block">Returns an array containing all the elements in this collection;
+ the runtime type of the returned array is that of the specified array.</div>
 </dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>

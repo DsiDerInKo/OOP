@@ -2,6 +2,11 @@ package is.bushuev;
 
 import java.util.*;
 
+/**
+ * My list that implements collection and release List
+ *
+ * @param <E> the type of elements in List
+ */
 public class MyList<E> implements Collection<E> {
     private int listSize = 0;
     private final Node head;
@@ -12,9 +17,9 @@ public class MyList<E> implements Collection<E> {
 
     private class Node {
 
-        E value;
-        Node prev;
-        Node next;
+        private E value;
+        private Node prev;
+        private Node next;
 
         public Node() {
             prev = this;
@@ -26,36 +31,33 @@ public class MyList<E> implements Collection<E> {
             prev = this;
             next = this;
         }
+
+        public void addAfter(E newValue) {
+
+            Node newNode = new Node(newValue);
+            newNode.prev = this;
+            newNode.next = this.next;
+            this.next.prev = newNode;
+            this.next = newNode;
+
+        }
+
+        public void addBefore(E newValue) {
+
+            Node newNode = new Node(newValue);
+            newNode.next = this;
+            newNode.prev = this.prev;
+            this.prev.next = newNode;
+            this.prev = newNode;
+        }
+
+        public E extract() {
+            this.prev.next = this.next;
+            this.next.prev = this.prev;
+
+            return this.value;
+        }
     }
-        private void addAfter(Node self, E newValue) {
-
-            Node newNode = new Node(newValue);
-            newNode.prev = self;
-            newNode.next = self.next;
-            self.next.prev = newNode;
-            self.next = newNode;
-
-        }
-
-        private void addBefore(Node self, E newValue) {
-
-            Node newNode = new Node(newValue);
-            newNode.next = self;
-            newNode.prev = self.prev;
-            self.prev.next = newNode;
-            self.prev = newNode;
-
-
-        }
-
-        public E removeElem(Node self) {
-            self.prev.next = self.next;
-            self.next.prev = self.prev;
-
-            return self.value;
-        }
-
-
 
     /**
      * Returns the number of elements in this list.  If this list contains
@@ -116,6 +118,7 @@ public class MyList<E> implements Collection<E> {
 
         private Node current = head;
 
+
         /**
          * Returns {@code true} if the iteration has more elements.
          * (In other words, returns {@code true} if {@link #next} would
@@ -125,7 +128,7 @@ public class MyList<E> implements Collection<E> {
          */
         @Override
         public boolean hasNext() {
-            return current.next != current;
+            return current.next != head;
         }
 
         /**
@@ -136,7 +139,9 @@ public class MyList<E> implements Collection<E> {
          */
         @Override
         public E next() {
-            if (!hasNext()) throw new NoSuchElementException();
+            if (!hasNext()){
+                throw new NoSuchElementException();
+            }
             current = current.next;
 
             return current.value;
@@ -144,8 +149,9 @@ public class MyList<E> implements Collection<E> {
 
         @Override
         public void remove() {
-            removeElem(current);
+            current.extract();
         }
+
     }
 
     /**
@@ -205,25 +211,22 @@ public class MyList<E> implements Collection<E> {
      *                              collection is not assignable to the {@linkplain Class#getComponentType
      *                              runtime component type} of the specified array
      * @throws NullPointerException if the specified array is nul.
-     * It allows an existing array to be reused under certain circumstances.
-     * Use {@link #toArray()} to create an array whose runtime type is {@code Object[]}
+     *                              It allows an existing array to be reused under certain circumstances.
+     *                              Use {@link #toArray()} to create an array whose runtime type is {@code Object[]}
      *
+     *                              <p>Suppose {@code x} is a collection known to contain only strings.
+     *                              The following code can be used to dump the collection into a previously
+     *                              allocated {@code String} array:
+     *                              <pre>
+     *                                  String[] y = new String[SIZE];
+     *                                  ...
+     *                                  y = x.toArray(y);</pre>
      *
-     * <p>Suppose {@code x} is a collection known to contain only strings.
-     * The following code can be used to dump the collection into a previously
-     * allocated {@code String} array:
-     *
-     * <pre>
-     *     String[] y = new String[SIZE];
-     *     ...
-     *     y = x.toArray(y);</pre>
-     *
-     * <p>The return value is reassigned to the variable {@code y}, because a
-     * new array will be allocated and returned if the collection {@code x} has
-     * too many elements to fit into the existing array {@code y}.
-     *
-     * <p>Note that {@code toArray(new Object[0])} is identical in function to
-     * {@code toArray()}.
+     *                              <p>The return value is reassigned to the variable {@code y}, because a
+     *                              new array will be allocated and returned if the collection {@code x} has
+     *                              too many elements to fit into the existing array {@code y}.
+     *                              <p>Note that {@code toArray(new Object[0])} is identical in function to
+     *                              {@code toArray()}.
      */
     @Override
     public <T> T[] toArray(T[] a) {
@@ -232,9 +235,20 @@ public class MyList<E> implements Collection<E> {
             var iter = iterator();
             while (iter.hasNext()) {
                 a[i] = (T) iter.next();
+                i++;
             }
+            return a;
         }
-        return null;
+
+        T[] array = (T[]) new Object[listSize];
+        int i = 0;
+        var iter = iterator();
+        while (iter.hasNext()) {
+            array[i] = (T) iter.next();
+            i++;
+        }
+        return array;
+
     }
 
     /**
@@ -261,7 +275,7 @@ public class MyList<E> implements Collection<E> {
      */
 
     public boolean add(E o) {
-        addBefore(head, o);
+        head.addBefore(o);
         listSize++;
         return true;
     }
@@ -293,11 +307,30 @@ public class MyList<E> implements Collection<E> {
         //Node node = head;
 
         var iter = iterator();
+
         while (iter.hasNext()) {
-            if (iter.next() == o) iter.remove();
+            if (o.equals(iter.next())) {
+                iter.remove();
+                listSize--;
+                break;
+            }
         }
-        listSize--;
+
         return contains(o);
+    }
+
+    /**
+     * Removes first elem from this
+     *
+     * @return true if remove was successful and false if nothing was changed
+     */
+    public boolean remove() {
+        if (head.next == head) {
+            return false;
+        }
+        head.next.extract();
+        listSize--;
+        return true;
     }
 
     /**
@@ -323,11 +356,19 @@ public class MyList<E> implements Collection<E> {
      */
 
     public boolean addAll(Collection c) {
-        var iter = iterator();
-        while (iter.hasNext()) {
-            c.add(iter.next());
+        var iter = c.iterator();
+        boolean flag = false;
+        E[] arr = (E[]) c.toArray();
+        for (int i = 0; i < arr.length; i++) {
+            head.addBefore(arr[i]);
+            listSize++;
+            flag = true;
         }
-        return true;
+        /*while (iter.hasNext()) {
+            head.addBefore((E) iter.next());
+            flag = true;
+        }*/
+        return flag ? true : false;
     }
 
 
@@ -342,6 +383,7 @@ public class MyList<E> implements Collection<E> {
     public void clear() {
         var iter = iterator();
         while (iter.hasNext()) {
+            iter.next();
             iter.remove();
         }
         listSize = 0;
@@ -358,12 +400,18 @@ public class MyList<E> implements Collection<E> {
 
     public E get(int index) {
 
-        if (index < 0 || index >= size()) throw new IndexOutOfBoundsException();
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
 
         int i = 0;
         for (E e : this) {
-            if (i == index) return e;
-            else i++;
+            if (i == index) {
+                return e;
+            }
+            else {
+                i++;
+            }
         }
 
         return null;
@@ -389,13 +437,17 @@ public class MyList<E> implements Collection<E> {
      */
 
     public Object set(int index, Object element) {
-        if (index < 0 || index >= size()) throw new IndexOutOfBoundsException();
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
 
-        int i = 0;
         Node node = head.next;
 
-        while (i != (index)) {
-            i++;
+        for (int i = 0; i < listSize; i++) {
+            if (i == index) {
+                break;
+            }
+
             node = node.next;
         }
         //addAfter(node, (E) element);
@@ -426,17 +478,22 @@ public class MyList<E> implements Collection<E> {
      */
 
     public void add(int index, Object element) {
-        if (index < 0 || index >= size()) throw new IndexOutOfBoundsException();
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
 
-        int i = 0;
         Node node = head;
 
-        while (i != (index)) {
-            i++;
+        for (int i = 0; i < listSize; i++) {
+            if (i == index) {
+                break;
+            }
+
             node = node.next;
         }
+
         listSize++;
-        addAfter(node, (E) element);
+        node.addAfter((E) element);
     }
 
     /**
@@ -454,19 +511,25 @@ public class MyList<E> implements Collection<E> {
      */
 
     public E remove(int index) {
-        if (index < 0 || index >= size()) throw new IndexOutOfBoundsException();
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
 
-        int i = 0;
         Node node = head.next;
 
-        while (i != (index)) {
-            i++;
+        for (int i = 0; i < listSize; i++) {
+            if (i == index) {
+                break;
+            }
+
             node = node.next;
         }
+
         listSize--;
-        return removeElem(node);
+        return node.extract();
     }
 //
+
     /**
      * Returns the index of the first occurrence of the specified element
      * in this list, or -1 if this list does not contain the element.
@@ -486,15 +549,22 @@ public class MyList<E> implements Collection<E> {
      */
 
     public int indexOf(Object o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
+
         int i = 0;
         Node node = head.next;
 
-        while (node.value != o) {
-            i++;
+        for (E e : this) {
+            if (o.equals(node.value)) {
+                return i;
+            }
             node = node.next;
+            i++;
         }
 
-        return i;
+        return -1;
     }
 
     /**
@@ -516,17 +586,21 @@ public class MyList<E> implements Collection<E> {
      */
 
     public int lastIndexOf(Object o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
+
         int i = 0;
-        int lastInd;
+        int lastInd = -1;
         Node node = head.next;
 
-        while (node.next != head) {
-            if (node.value == o) lastInd = i;
+        while (node != head) {
+            if (o.equals(node.value)) lastInd = i;
             i++;
             node = node.next;
         }
 
-        return 0;
+        return lastInd;
     }
 
     /**
@@ -552,11 +626,18 @@ public class MyList<E> implements Collection<E> {
 
     public boolean retainAll(Collection c) {
         var iter = iterator();
+        boolean flag = false;
+
         while (iter.hasNext()) {
-            if (!c.contains(iter.next())) iter.remove();
+            if (!c.contains(iter.next())) {
+                iter.remove();
+                listSize--;
+                flag = true;
+            }
+
         }
 
-        return true;
+        return flag;
     }
 
     /**
@@ -580,11 +661,17 @@ public class MyList<E> implements Collection<E> {
 
     public boolean removeAll(Collection c) {
         var iter = iterator();
+        boolean flag = false;
+
         while (iter.hasNext()) {
-            if (c.contains(iter.next())) iter.remove();
+            if (c.contains(iter.next())) {
+                iter.remove();
+                listSize--;
+                flag = true;
+            }
         }
 
-        return false;
+        return flag;
     }
 
     /**
@@ -609,7 +696,9 @@ public class MyList<E> implements Collection<E> {
     public boolean containsAll(Collection c) {
         var iter = iterator();
         while (iter.hasNext()) {
-            if (!c.contains(iter.next())) return false;
+            if (!c.contains(iter.next())) {
+                return false;
+            }
         }
         return true;
     }

@@ -545,11 +545,9 @@ implements java.util.Collection&lt;E&gt;</pre>
                               It allows an existing array to be reused under certain circumstances.
                               Use <a href="#toArray()"><code>toArray()</code></a> to create an array whose runtime type is <code>Object[]</code>
 
-
                               <p>Suppose <code>x</code> is a collection known to contain only strings.
                               The following code can be used to dump the collection into a previously
                               allocated <code>String</code> array:
-
                               <pre>
                                   String[] y = new String[SIZE];
                                   ...
@@ -558,7 +556,6 @@ implements java.util.Collection&lt;E&gt;</pre>
                               <p>The return value is reassigned to the variable <code>y</code>, because a
                               new array will be allocated and returned if the collection <code>x</code> has
                               too many elements to fit into the existing array <code>y</code>.
-
                               <p>Note that <code>toArray(new Object[0])</code> is identical in function to
                               <code>toArray()</code>.</dd>
 </dl>

@@ -28,7 +28,7 @@ public abstract class GraphIncedence<V, E> implements Graph<V, E> {
 
     private final Map<V, Node> incidenceList;
 
-    public GraphIncedence(int vertAmount) {
+    public GraphIncedence() {
         incidenceList = new HashMap<>();
     }
 
@@ -44,6 +44,10 @@ public abstract class GraphIncedence<V, E> implements Graph<V, E> {
         return incidenceList.get(vertex.getValue()).edgeList
                 .stream()
                 .filter((tmp) -> tmp.getTargetVertex().equals(vertex)).collect(Collectors.toList());
+    }
+
+    public List<Vertex<V>> adjacencyVertices(V vertex) {
+        return adjacencyVertices(incidenceList.get(vertex).vert);
     }
 
     @Override
@@ -81,6 +85,22 @@ public abstract class GraphIncedence<V, E> implements Graph<V, E> {
     @Override
     public Edge<V, E> addEdge(Vertex<V> sourceVertex, Vertex<V> targetVertex, Double weight, E object) {
         return addEdge(new Edge<>(sourceVertex, targetVertex, weight, object));
+    }
+
+    @Override
+    public Edge<V, E> addEdge(V sourceVertex, V targetVertex) {
+        if (sourceVertex == null || targetVertex == null) {
+            return null;
+        }
+        if (incidenceList.containsKey(sourceVertex) && incidenceList.containsKey(targetVertex)) {
+            Node source = incidenceList.get(sourceVertex);
+            Node target = incidenceList.get(targetVertex);
+            Edge<V, E> edge = new Edge<>(source.vert, target.vert);
+
+            addEdge(edge);
+            return edge;
+        }
+        return null;
     }
 
     @Override

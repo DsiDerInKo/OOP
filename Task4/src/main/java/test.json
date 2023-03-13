@@ -1,4 +1,7 @@
 {
-  "query": "Виктор Иван",
-  "count": 7
+  "query": "Victor Ivan",
+  "count": 7,
+  "age": 19,
+  "sm": 1,
+
 }

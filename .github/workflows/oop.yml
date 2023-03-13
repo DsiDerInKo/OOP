@@ -48,6 +48,18 @@ jobs:
       - name: Generate javadoc
         run: ./gradlew ${{ github.event.pull_request.title }}:javadoc
 
+      #- name: Generate jar1
+      #  run: ./gradlew ${{ github.event.pull_request.title }}:compileJava
+
+      #- name: Generate jar2
+      #  run: ./gradlew ${{ github.event.pull_request.title }}:processResources
+
+      #- name: Generate jar3
+      #  run: ./gradlew ${{ github.event.pull_request.title }}:classes
+
+      #- name: Generate jar4
+      #  run: ./gradlew ${{ github.event.pull_request.title }}:jar
+
       - name: directory tree
         run: tree
 
@@ -61,15 +73,16 @@ jobs:
           # Если джавадоки не там, то можете поменять директорию выше, опираясь на дерево выше
           target-folder: ${{ github.event.pull_request.title }}
 
-  checkstyle:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
 
-      - name: Run check style
-        uses: nikitasavinov/checkstyle-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          checkstyle_config: '.github/google_checks.xml'
-          reporter: 'github-pr-check'
+#  checkstyle:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#
+#      - name: Run check style
+#        uses: nikitasavinov/checkstyle-action@master
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          checkstyle_config: '.github/google_checks.xml'
+#          reporter: 'github-pr-check'

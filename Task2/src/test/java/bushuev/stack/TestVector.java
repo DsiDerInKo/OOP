@@ -57,5 +57,6 @@ public class TestVector {
 
         vector.popAll(new ArrayList<>(Arrays.stream(arr).collect(Collectors.toList())));
 
+
     }
 }

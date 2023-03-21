@@ -26,7 +26,7 @@ public class NoteInMemoryDAO implements NoteDAO {
 
     @Override
     public void deleteAll() {
-        base.forEach((key, value)->base.remove(key));
+        base.clear();
     }
 
     @Override
@@ -35,16 +35,14 @@ public class NoteInMemoryDAO implements NoteDAO {
     }
 
     @Override
-    public Note changeHeader(String header, String newHeader) {
-        Note tmp = base.remove(header);
-        tmp.setHeader(newHeader);
-        return base.put(newHeader,tmp);
+    public Note updateNote(String header, Note newNote) {
+        base.get(header).setHeader(newNote.getHeader());
+        base.get(header).setDate(newNote.getDate());
+        return null;
     }
 
     @Override
     public List<Note> getNotes() {
-        List<Note> list = new LinkedList<Note>();
-        base.forEach((key, value)-> list.add(base.get(key)));
-        return list;
+        return new LinkedList<Note>(base.values());
     }
 }

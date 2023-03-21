@@ -29,7 +29,7 @@ public class NoteJsonMemoryDAO implements NoteDAO {
     }
 
     @Override
-    public Note changeHeader(String header, String newHeader) {
+    public Note updateNote(String header, Note newNote) {
         return null;
     }
 

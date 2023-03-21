@@ -11,18 +11,7 @@ public class MainClass {
 
         Gson gson = new Gson();
 
-        Student obj = gson.fromJson(new FileReader("C:\\prog\\javaprod\\OOP\\Task4\\src\\main\\java\\test.json"), Student.class);
-/*
-String tmp = "{'query' : 'count'}";
-
-//Object fig = gson.fromJson(tmp,String.class);
-
-//System.out.println(fig);
-System.out.println(obj);
-obj.toString();
-*
-* (object mapper )
-* */
+        Student obj = gson.fromJson(new FileReader("C:\\Prog\\java_prod\\OOP\\Task4\\src\\main\\java\\test.json"), Student.class);
 
         System.out.println(obj.toString());
 

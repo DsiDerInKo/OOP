@@ -20,4 +20,5 @@ public interface NoteDAO {
     List<Note> getNotes();  //    ???  (get specified List of Entity
     //                                                        grouped by some condition)
 
+
 }

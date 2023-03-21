@@ -1,12 +1,13 @@
 package app.note;
 
+import app.dao.DAOImplementation;
 import app.note.interfaces.NoteDAO;
 import app.note.interfaces.Service;
 
 public class EnvironmentalProvider {
 
     static public NoteDAO getNoteDAO() {
-        return (NoteDAO) new Object();
+        return new DAOImplementation();
     }
 
     static public Service getService() {

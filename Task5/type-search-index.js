@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"graph","l":"Graph"},{"p":"solutions","l":"MainClass.GraphImplementation"},{"p":"graph","l":"GraphIncedence"},{"p":"solutions","l":"MainClass"},{"p":"graph","l":"Vertex"}]

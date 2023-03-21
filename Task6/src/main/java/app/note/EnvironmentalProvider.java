@@ -1,13 +1,14 @@
 package app.note;
 
 import app.note.interfaces.Controller;
+import app.dao.NoteInMemoryDAO;
 import app.note.interfaces.NoteDAO;
 import app.note.interfaces.Service;
 
 public class EnvironmentalProvider {
 
     static public NoteDAO getNoteDAO() {
-        return (NoteDAO) new Object();
+        return new NoteInMemoryDAO();
     }
 
     static public Service getService() {

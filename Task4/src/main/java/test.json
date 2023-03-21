@@ -1,0 +1,18 @@
+{
+  "name": "MishaFromNGU",
+  "age": 44,
+  "food": [
+    {
+      "type": "milk",
+      "amount": 1
+    },
+    {
+      "type": "pizza",
+      "amount": 122
+    },
+    {
+      "type": "nuts",
+      "amount": 0
+    }
+  ]
+}

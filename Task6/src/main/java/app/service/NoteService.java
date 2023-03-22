@@ -39,17 +39,17 @@ public class NoteService implements Service {
 
     @Override
     public Note changeHeader(String header, String newHeader) {
-
-        return dao.update(header,);
+        return dao.update(header,new Note(newHeader,dao.getNote(header).get().getText()));
     }
 
     @Override
     public Note changeText(String header, String newText) {
-        return null;
+        return dao.update(header,new Note(header,newText));
     }
 
     @Override
     public List<Note> getNotes(boolean flag) {
+
         return null;
     }
 

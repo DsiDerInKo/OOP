@@ -24,6 +24,8 @@ public interface Service {
 
     Optional<Note> changeText(String header, String newText);
 
+    Note changeText(String header, String newText);
+
     List<Note> getNotes(boolean flag);  //    ???  (get specified List of Entity
     //          grouped by some condition)
 

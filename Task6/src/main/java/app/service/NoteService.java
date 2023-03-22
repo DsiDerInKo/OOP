@@ -38,6 +38,11 @@ public class NoteService implements Service {
     }
 
     @Override
+    public Note changeText(String header, String newText) {
+        return null;
+    }
+
+    @Override
     public List<Note> getNotes(boolean flag) {
         return null;
     }

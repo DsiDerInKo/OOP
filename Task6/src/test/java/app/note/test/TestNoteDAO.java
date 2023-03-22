@@ -16,7 +16,7 @@ public class TestNoteDAO {
 
         Assertions.assertNull(dao.delete("aboba"));
         Assertions.assertNull(dao.getNotes());
-        Assertions.assertNull(dao.changeHeader("1", "2"));
+        Assertions.assertNull(dao.updateNote("1", new Note("1","asasdas")));
         Assertions.assertNull(dao.add(null));
 
         Note note1 = new Note("123", "asdasdasdasdasdasd");

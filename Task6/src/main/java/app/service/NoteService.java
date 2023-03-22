@@ -1,40 +1,46 @@
 package app.service;
 
+import app.note.EnvironmentalProvider;
 import app.note.Note;
+import app.note.interfaces.NoteDAO;
 import app.note.interfaces.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 public class NoteService implements Service {
+
+    NoteDAO dao = EnvironmentalProvider.getNoteDAO();
+
     @Override
     public Note save(Note card) {
-        return null;
+        return dao.add(card);
     }
 
     @Override
     public Note remove(String header) {
-        return null;
+        return dao.delete(header);
     }
 
     @Override
     public void removeAll() {
-
+        dao.deleteAll();
     }
 
     @Override
-    public Optional<Note> getCard(String header) {
-        return Optional.empty();
+    public Optional<Note> getNote(String header) {
+        return dao.getNote(header);
     }
 
     @Override
     public boolean exists(String header) {
-        return false;
+        return dao.getNote(header).isPresent();
     }
 
     @Override
     public Note changeHeader(String header, String newHeader) {
-        return null;
+
+        return dao.update(header,);
     }
 
     @Override
@@ -48,7 +54,7 @@ public class NoteService implements Service {
     }
 
     @Override
-    public boolean sortCards() {
+    public boolean sortNotes() {
         return false;
     }
 }

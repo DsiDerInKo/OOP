@@ -2,6 +2,7 @@ package app.note.interfaces;
 
 import app.note.Note;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +10,9 @@ public interface Service {
 
     Note save(Note card);
 
-    Note remove(String header);
+    List<Note> save(Collection<Note> cards);
+
+    Optional<Note> remove(String header);
 
     void removeAll();
 
@@ -17,14 +20,15 @@ public interface Service {
 
     boolean exists(String header);
 
-    Note changeHeader(String header, String newHeader);
+    Optional<Note> changeHeader(String header, String newHeader);
 
-    Note changeText(String header, String newText);
+    Optional<Note> changeText(String header, String newText);
 
     List<Note> getNotes(boolean flag);  //    ???  (get specified List of Entity
     //          grouped by some condition)
 
 
     boolean sortNotes();  // sort in list by alphabet/tag/date
+
 
 }

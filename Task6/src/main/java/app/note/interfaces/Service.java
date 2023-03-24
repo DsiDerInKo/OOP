@@ -13,16 +13,18 @@ public interface Service {
 
     void removeAll();
 
-    Optional<Note> getCard(String header);
+    Optional<Note> getNote(String header);
 
     boolean exists(String header);
 
     Note changeHeader(String header, String newHeader);
 
+    Note changeText(String header, String newText);
+
     List<Note> getNotes(boolean flag);  //    ???  (get specified List of Entity
     //          grouped by some condition)
 
 
-    boolean sortCards();  // sort in list by alphabet/tag/date
+    boolean sortNotes();  // sort in list by alphabet/tag/date
 
 }

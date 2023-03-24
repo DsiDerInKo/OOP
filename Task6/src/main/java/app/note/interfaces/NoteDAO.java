@@ -15,7 +15,7 @@ public interface NoteDAO {
 
     Optional<Note> getNote(String header);
 
-    Note changeHeader(String header, String newHeader);
+    Note updateNote(String header, Note newNote);
 
     List<Note> getNotes();  //    ???  (get specified List of Entity
     //                                                        grouped by some condition)

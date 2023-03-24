@@ -5,8 +5,10 @@ import app.note.Note;
 import app.note.interfaces.NoteDAO;
 import app.note.interfaces.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.TreeMap;
 
 public class NoteService implements Service {
 
@@ -18,8 +20,13 @@ public class NoteService implements Service {
     }
 
     @Override
-    public Note remove(String header) {
-        return dao.delete(header);
+    public List<Note> save(Collection<Note> cards) {
+        return null;
+    }
+
+    @Override
+    public Optional<Note> remove(String header) {
+        return Optional.of(dao.delete(header));
     }
 
     @Override
@@ -38,23 +45,24 @@ public class NoteService implements Service {
     }
 
     @Override
-    public Note changeHeader(String header, String newHeader) {
-        return dao.update(header,new Note(newHeader,dao.getNote(header).get().getText()));
+    public Optional<Note> changeHeader(String header, String newHeader) {
+        return Optional.of(dao.updateNote(header, new Note(newHeader, dao.getNote(header).get().getText())));
     }
 
     @Override
-    public Note changeText(String header, String newText) {
-        return dao.update(header,new Note(header,newText));
+    public Optional<Note> changeText(String header, String newText) {
+        return Optional.of(dao.updateNote(header, new Note(header, newText)));
     }
 
     @Override
     public List<Note> getNotes(boolean flag) {
 
-        return null;
+        return dao.getNotes();
     }
 
     @Override
     public boolean sortNotes() {
+
         return false;
     }
 }

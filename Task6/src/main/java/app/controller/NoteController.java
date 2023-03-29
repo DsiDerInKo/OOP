@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.note.Note;
 import app.note.interfaces.Controller;
 import picocli.CommandLine;
 
@@ -12,34 +13,33 @@ import java.io.File;
 import java.math.BigInteger;
 import java.nio.file.Files;
 import java.security.MessageDigest;
+import java.util.Date;
 import java.util.concurrent.Callable;
 
+@CommandLine.Command(name = "getNote", version = "getNote 1.0",
+        description = "takes from CL new Note")
 public class NoteController implements Controller {
 
-    @CommandLine.Command(name = "checksum", mixinStandardHelpOptions = true, version = "checksum 4.0",
-            description = "Prints the checksum (SHA-256 by default) of a file to STDOUT.")
-    static
-    class CheckSum implements Callable<Integer> {
+    public Note note;
 
-        @CommandLine.Parameters(index = "0", description = "The file whose checksum to calculate.")
-        private File file;
-
-        @CommandLine.Option(names = {"-a", "--algorithm"}, description = "MD5, SHA-1, SHA-256, ...")
-        private final String algorithm = "SHA-256";
-
-        @Override
-        public Integer call() throws Exception { // your business logic goes here...
-            byte[] fileContents = Files.readAllBytes(file.toPath());
-            byte[] digest = MessageDigest.getInstance(algorithm).digest(fileContents);
-            System.out.printf("%0" + (digest.length * 2) + "x%n", new BigInteger(1, digest));
-            return 0;
-        }
-
-        // this example implements Callable, so parsing, error handling and handling user
-        // requests for usage help or version help can be done with one line of code.
-        public static void main(String... args) {
-            int exitCode = new CommandLine(new CheckSum()).execute(args);
-            System.exit(exitCode);
-        }
+    @Override
+    public Note getNote() throws Exception {
+        call();
+        return note;
     }
+
+    @CommandLine.Option(names = {"-h","-header"}, description = "Note header")
+    private String noteHeader;
+
+    @CommandLine.Option(names = {"-t", "-text"}, description = "Note text")
+    private String noteText;
+
+
+    public Integer call() throws Exception { // your business logic goes here...
+        note = new Note(noteHeader,noteText,new Date());
+        return 0;
+    }
+
+
+
 }

@@ -4,6 +4,6 @@ import app.note.Note;
 
 public interface Controller {
 
-    Note getNote() throws Exception;
+    //Note getNote() throws Exception;
 
 }

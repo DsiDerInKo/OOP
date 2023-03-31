@@ -1,45 +1,64 @@
 package app.controller;
 
+import app.note.EnvironmentalProvider;
 import app.note.Note;
 import app.note.interfaces.Controller;
+import app.note.interfaces.Service;
 import picocli.CommandLine;
 
-import picocli.CommandLine;
-import picocli.CommandLine.Command;
-import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
-
-import java.io.File;
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.security.MessageDigest;
 import java.util.Date;
-import java.util.concurrent.Callable;
 
-@CommandLine.Command(name = "getNote", version = "getNote 1.0",
-        description = "takes from CL new Note")
 public class NoteController implements Controller {
 
-    public Note note;
+    Service service = EnvironmentalProvider.getService();
 
-    @Override
-    public Note getNote() throws Exception {
-        call();
-        return note;
+    @CommandLine.Command(name = "saveNote", version = "getNote 1.0",
+            description = "takes from CL new Note and saves it")
+    class saveNote {
+        @CommandLine.Option(names = {"-h", "-header"}, description = "Note header")
+        private String noteHeader;
+
+        @CommandLine.Option(names = {"-t", "-text"}, description = "Note text")
+        private String noteText;
+
+
+        public Integer call() throws Exception { // your business logic goes here...
+            service.save(new Note(noteHeader, noteText, new Date()));
+            return 0;
+        }
     }
 
-    @CommandLine.Option(names = {"-h","-header"}, description = "Note header")
-    private String noteHeader;
+    class removeNote {
+        @CommandLine.Option(names = {"-h", "-header"}, description = "Note header")
+        private String noteHeader;
 
-    @CommandLine.Option(names = {"-t", "-text"}, description = "Note text")
-    private String noteText;
-
-
-    public Integer call() throws Exception { // your business logic goes here...
-        note = new Note(noteHeader,noteText,new Date());
-        return 0;
+        public Integer call() throws Exception { // your business logic goes here...
+            service.remove(noteHeader);
+            return 0;
+        }
     }
 
+    class removeAll {
 
+    }
+
+    class changeHeader {
+
+    }
+
+    class changeText {
+
+    }
+
+    class getNote {
+
+        @CommandLine.Option(names = {"-h", "-header"}, description = "Note header")
+        private String noteHeader;
+
+        public Integer call() throws Exception { // your business logic goes here...
+            service.getNote(noteHeader).ifPresent(System.out::println);
+            return 0;
+        }
+    }
 
 }

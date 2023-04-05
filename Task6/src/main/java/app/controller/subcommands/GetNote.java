@@ -6,7 +6,7 @@ import picocli.CommandLine;
 
 import java.util.concurrent.Callable;
 
-@CommandLine.Command(name = "getNote", version = "getNote 1.0",
+@CommandLine.Command(name = "get", version = "getNote 1.0",
         description = "takes from data")
 public class GetNote implements Callable {
     Service service = EnvironmentalProvider.getService();

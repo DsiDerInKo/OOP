@@ -8,7 +8,7 @@ import picocli.CommandLine;
 import java.util.Date;
 import java.util.concurrent.Callable;
 
-@CommandLine.Command(name = "saveNote", version = "saveNote 1.0",
+@CommandLine.Command(name = "save", version = "saveNote 1.0",
         description = "takes from CL new Note and saves it")
 public class SaveNote implements Callable {
     Service service = EnvironmentalProvider.getService();

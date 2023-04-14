@@ -30,5 +30,4 @@ public interface Service {
 
     boolean sortNotes();  // sort in list by alphabet/tag/date
 
-
 }

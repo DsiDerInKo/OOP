@@ -2,7 +2,6 @@ package app.note.interfaces;
 
 import app.note.Note;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +9,7 @@ public interface NoteDAO {
 
     Note add(Note card);
 
-    Note delete(String header) throws IOException;
+    Note delete(String header);
 
     void deleteAll();
 

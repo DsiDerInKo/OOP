@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "change", version = "change 1.0",
         description = "default")
-public class Change implements Callable {
+public class Change implements Callable<Integer> {
 
     public Integer call() throws Exception { // your business logic goes here...
 

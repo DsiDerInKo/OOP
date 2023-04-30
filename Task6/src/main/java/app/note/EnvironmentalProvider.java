@@ -5,6 +5,9 @@ import app.dao.NoteInMemoryDAO;
 import app.note.interfaces.NoteDAO;
 import app.note.interfaces.Service;
 
+/**
+ * Dependency injection
+ */
 public class EnvironmentalProvider {
 
     static public NoteDAO getNoteDAO() {

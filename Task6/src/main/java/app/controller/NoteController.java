@@ -4,10 +4,6 @@ import app.controller.subcommands.Change;
 import app.controller.subcommands.GetNote;
 import app.controller.subcommands.Remove;
 import app.controller.subcommands.SaveNote;
-import app.note.EnvironmentalProvider;
-import app.note.Note;
-import app.note.interfaces.Controller;
-import app.note.interfaces.Service;
 import picocli.CommandLine;
 
 
@@ -18,9 +14,8 @@ import java.util.concurrent.Callable;
         Remove.class,
         GetNote.class,
         Change.class})
-public class NoteController implements Callable {
+public class NoteController implements Callable<Integer> {
 
-    //Service service = EnvironmentalProvider.getService();
 
 //    @CommandLine.Option(names = {"sn", "saveNote"}, description = "default")
 //    private boolean save = false;

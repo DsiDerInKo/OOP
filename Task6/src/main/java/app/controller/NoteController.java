@@ -10,10 +10,12 @@ import picocli.CommandLine;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "notebook", version = "controller 1.0",
-        description = "wow", subcommands = {SaveNote.class,
+        description = "my trying", subcommands = {
+        SaveNote.class,
         Remove.class,
         GetNote.class,
-        Change.class})
+        Change.class
+})
 public class NoteController implements Callable<Integer> {
 
 
@@ -35,16 +37,5 @@ public class NoteController implements Callable<Integer> {
         //commandLine.execute();
 
         return 0;
-    }
-
-    public static void main(String... args) {
-
-        int exitCode = new CommandLine(new NoteController())
-                .addSubcommand("save", new SaveNote())
-                .addSubcommand("remove", new Remove())
-                .addSubcommand("get", new GetNote())
-                .addSubcommand("change", new Change())
-                .execute(args);
-        System.exit(exitCode);
     }
 }

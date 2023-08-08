@@ -3,10 +3,6 @@ package is.bushuev;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 class Counter implements Runnable {
     int evenAmount = 0, oddAmount = 0, part, partAmount;
@@ -72,8 +68,17 @@ class Jiga {
         isTaken = false;
     }
 
-    void burnSigaret(Sigaret sigaret) {
+    void putOut(Cigarette sigaret) {
+        sigaret.thread.interrupt();
+        sigaret.onFire = false;
+    }
+
+    void burnSigaret(Cigarette sigaret) {
         synchronized (this) {
+
+            sigaret.thread.start();
+            sigaret.onFire = true;
+
             isTaken = true;
             System.out.println(Thread.currentThread().getName() + " took fire");
             try {
@@ -89,35 +94,42 @@ class Jiga {
 
 class SmokingPidor implements Runnable {
 
-    Sigaret sigaret;
+    Cigarette cigarette;
     Jiga jiga;
     String name;
 
     SmokingPidor(String name, Jiga jiga) {
-        sigaret = new Sigaret();
+        cigarette = new Cigarette();
         this.name = name;
         this.jiga = jiga;
     }
 
     @Override
     public void run() {
-        jiga.burnSigaret(sigaret);
+        jiga.burnSigaret(cigarette);
         System.out.println(name + " started smoke");
-        sigaret.smoke();
+        cigarette.smoke();
+        jiga.putOut(cigarette);
+        cigarette.smoke();
         System.out.println(name + " ended smoke");
     }
 }
 
-class Sigaret {
+class Cigarette implements Runnable {
 
     boolean onFire;
+    Thread thread;
 
-    Sigaret() {
+    Cigarette() {
         onFire = false;
+        thread = new Thread();
     }
 
     void smoke() {
-        onFire = true;
+        if (!onFire) {
+            System.out.println(Thread.currentThread().getName() + " can't smoke without burning sigaret");
+        }
+
         Random rn = new Random();
         int random = rn.nextInt(10) + 1;
         for (int i = 0; i < random; i++) {
@@ -128,9 +140,13 @@ class Sigaret {
                 throw new RuntimeException(e);
             }
         }
-        onFire = false;
+
     }
 
+    @Override
+    public void run() {
+        smoke();
+    }
 }
 
 public class Main {
